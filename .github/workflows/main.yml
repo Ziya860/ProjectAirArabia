@@ -1,39 +1,18 @@
 name: Cypress E2E Tests
 
 on:
-  workflow_dispatch:   # ✅ allows manual trigger
-  schedule:            # ✅ run every 5 minutes
+  workflow_dispatch:   # manual trigger
+  schedule:            # run every 5 minutes
     - cron: "*/5 * * * *"
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
         with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Cypress test for AirArabia
-        run: npx cypress run --spec "cypress/e2e/AirArabia/BookTicket.cy.js"
-
-      - name: Upload Cypress screenshots (if failed)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-
-      - name: Upload Cypress videos
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-videos
-          path: cypress/videos
+          spec: cypress/e2e/AirArabia/BookTicket.cy.js
