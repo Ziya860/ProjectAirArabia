@@ -4,6 +4,8 @@ const path = require("path");
 module.exports = defineConfig({
   viewportWidth: 1920,
   viewportHeight: 1080,
+
+  // Reporter configuration
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     charts: true,
@@ -13,12 +15,17 @@ module.exports = defineConfig({
     json: true,
     reportDir: "cypress/reports"
   },
+
   e2e: {
     setupNodeEvents(on, config) {
-      //require("cypress-mochawesome-reporter/plugin")(on);
-      // If you need to add other node event listeners, do so here
+      // Register the mochawesome reporter plugin
+      require("cypress-mochawesome-reporter/plugin")(on);
+
+      // Add other node event listeners here if needed
       return config;
     },
+
+    // Webpack aliases
     webpack: {
       resolve: {
         alias: {
