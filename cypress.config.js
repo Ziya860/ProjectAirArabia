@@ -11,19 +11,17 @@ module.exports = defineConfig({
     charts: true,
     reportPageTitle: "My Cypress Test Report",
     inlineAssets: true,
-    html: false,       // generate HTML later
+    html: false,       // will merge later
     json: true,
     reportDir: "cypress/reports"
   },
 
   e2e: {
     setupNodeEvents(on, config) {
-      // Register the mochawesome reporter plugin
       require("cypress-mochawesome-reporter/plugin")(on);
-
-      // Add other node event listeners here if needed
       return config;
     },
+    specPattern: "cypress/e2e/**/*.cy.js",
 
     // Webpack aliases
     webpack: {
