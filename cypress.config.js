@@ -11,8 +11,8 @@ module.exports = defineConfig({
     charts: true,
     reportPageTitle: "My Cypress Test Report",
     inlineAssets: true,
-    html: false,       // generate HTML later
-    json: true,
+    html: true,       // generate HTML later
+    json: false,
     reportDir: "cypress/reports"
   },
 
