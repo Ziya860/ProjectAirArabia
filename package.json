@@ -15,10 +15,9 @@
     "mochawesome": "^7.1.3",
     "mochawesome-report-generator": "^6.2.0"
   },
-  "scripts": {
-    "test": "cypress run",
-    "report": "cypress run --reporter cypress-mochawesome-reporter",
-    "merge-reports": "marge cypress/reports/*.json --reportDir cypress/reports --inline --overwrite"
-  }
+"scripts": {
+  "test": "cypress run",
+  "report": "cypress run --reporter cypress-mochawesome-reporter"
+}
 }
 
